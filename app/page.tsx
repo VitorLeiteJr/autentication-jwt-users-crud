@@ -1,8 +1,7 @@
-import Login from "./components/Login";
 
 
 export default function Home() {
   return (
-   <Login/>
-  );
+ <div className="items-center">crud with autentication jwt</div>
+    );
 }
