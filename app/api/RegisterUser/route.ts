@@ -1,5 +1,5 @@
 import { prisma } from "@/util/prisma";
-import { NextRequest, NextResponse } from "next/server"
+import { NextRequest, NextResponse } from "next/server";
 import bcrypt from "bcrypt";
 
 export const POST = async (req: NextRequest) => {
@@ -19,8 +19,9 @@ export const POST = async (req: NextRequest) => {
                     password: hashPassword
                 }
             }) 
-            return NextResponse.json({message: true});
-    }catch(e){
-        return NextResponse.json({message: false});
-    }   
+            return NextResponse.json({Error: "Account created with success", status: true});
+            }
+            catch(e){
+                return NextResponse.json({Error: "something is wrong", status: false});
+            }   
 }
