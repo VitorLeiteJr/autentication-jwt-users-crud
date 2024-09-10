@@ -1,5 +1,9 @@
+interface DashboardProsps {
 
-const Dashboard = () => {
+    nickName: string;
+}
+
+const Dashboard = ({nickName}:DashboardProsps) => {
   return (
     <div className="flex w-screen h-screen text-gray-700">
 
@@ -87,7 +91,7 @@ const Dashboard = () => {
             </div>
             <div className="flex flex-col flex-grow">
                 <div className="flex items-center flex-shrink-0 h-16 px-8 border-b border-gray-300">
-                    <h1 className="text-lg font-medium">Page Title</h1>
+                    <h1 className="text-lg font-medium">Welcome back, {nickName}</h1>
                     <button className="flex items-center justify-center h-10 px-4 ml-auto text-sm font-medium rounded hover:bg-gray-300">
                         Action 1
                     </button>
