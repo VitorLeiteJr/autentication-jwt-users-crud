@@ -2,7 +2,8 @@
 import { useEffect } from "react"
 import Dashboard from "../_components/Dashboard"
 import { useRouter } from "next/navigation"
-import { CheckTokenByKey, CheckTokenValidationTime } from "@/util/jwt/checkToken"
+import axios from "axios"
+import { toast } from "react-toastify"
 
 
 const DashboardPage =  () => {
@@ -15,9 +16,17 @@ const DashboardPage =  () => {
       
       const token = localStorage.getItem("token") as string;
       
-      console.log(CheckTokenByKey(token));
-      if(!CheckTokenByKey(token)) route.push('/login');
-     
+      const validate = async () =>{
+        
+      const isOk = await axios.post("/api/CheckToken",{token});
+
+      if(!isOk.data.status) {
+        toast.error(isOk.data.Error);
+         route.push("/login");
+                      }
+    
+                         }
+        validate();
         });
 
   return (

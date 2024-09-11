@@ -9,13 +9,13 @@ export const POST = async (req: NextRequest) =>{
         
          try{
          
-                jwt.verify(token , process.env.SECRET_KEY as string);
+                await jwt.verify(token , process.env.SECRET_KEY as string);
                 
                 
         
                 return NextResponse.json({status: true});               
             }catch(e){
-                return NextResponse.json({Error: "invalide token", status: false});        
+                return NextResponse.json({Error: "invalided token", status: false});        
         }
     
 }
