@@ -1,147 +1,84 @@
-interface DashboardProsps {
 
-    nickName: string;
+import { User } from "@prisma/client";
+import Link from "next/link";
+
+interface DashboardProsps {  
+    users: User[];    
 }
 
-const Dashboard = ({nickName}:DashboardProsps) => {
-  return (
-    <div className="flex w-screen h-screen text-gray-700">
+const Dashboard = ({users}: DashboardProsps) => {
+    
+   return (
+    
+    <div className="bg-gray-100">  
 
-            <div className="flex flex-col items-center w-16 pb-4 overflow-auto border-r border-gray-300">
-                <a className="flex items-center justify-center flex-shrink-0 w-full h-16 bg-gray-300" href="#">
-                    <svg className="w-8 h-8"  xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
-                    </svg>
+        <div className="header bg-white h-16 px-10 py-8 border-b-2 border-gray-200 flex items-center justify-between">
+              <div className="flex items-center space-x-2 text-gray-400">
+                 <span className="tracking-wide text-md flex-col flex">
+                    <span className="text-base">Welcome back,</span>
+                    <Link className="" href="/">Logout</Link>
+                </span>
+              </div>
+        </div>
+        <div className="header my-3 px-10 flex items-center justify-between">------           
+        </div>
+        <div className="flex">
+           
+            <div className="w-full m-1 bg-white shadow-lg text-lg rounded-sm border border-gray-200">
+                <div className="overflow-x-auto rounded-lg p-3">
+                    <table className="table-auto w-full">
+                        <thead className="text-sm font-semibold uppercase text-gray-800 bg-gray-50 mx-auto">
+                            <tr>
+                                <th></th>
+                                <th><svg xmlns="http://www.w3.org/2000/svg" className="fill-current w-5 h-5 mx-auto"><path d="M6 22h12a2 2 0 0 0 2-2V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2zm7-18 5 5h-5V4zm-4.5 7a1.5 1.5 0 1 1-.001 3.001A1.5 1.5 0 0 1 8.5 11zm.5 5 1.597 1.363L13 13l4 6H7l2-3z"></path></svg></th>
+                                <th className="p-2">
+                                    <div className="font-semibold">Category</div>
+                                </th>
+                                <th className="p-2">
+                                    <div className="font-semibold text-left">Description</div>
+                                </th>
+                                <th className="p-2">
+                                    <div className="font-semibold text-center">Action</div>
+                                </th>
+                            </tr>
+                            {Array.isArray(users) ? (
+          users.map((user: User) =>(
+            <tr key={user.id}>
+            <td>1</td>
+            <td>
+                <img 
+                src="https://images.pexels.com/photos/25652584/pexels-photo-25652584/free-photo-of-elegant-man-wearing-navy-suit.jpeg?auto=compress&cs=tinysrgb&w=400" 
+                className="h-8 w-8 mx-auto" /></td>
+            <td>{user.email}</td>
+            <td>Sample Description</td>
+            <td className="p-2">
+                <div className="flex justify-center">
+                <a href="#" className="rounded-md hover:bg-green-100 text-green-600 p-2 flex justify-between items-center">
+                    <span>
+                    </span> EDIT
                 </a>
-                <a className="flex items-center justify-center flex-shrink-0 w-10 h-10 mt-4 rounded hover:bg-gray-300" href="#">
-                    <svg className="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-                    </svg>
-                </a>
-                <a className="flex items-center justify-center flex-shrink-0 w-10 h-10 mt-4 rounded hover:bg-gray-300" href="#">
-                    <svg className="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                    </svg>
-                </a>
-                <a className="flex items-center justify-center flex-shrink-0 w-10 h-10 mt-4 rounded hover:bg-gray-300" href="#">
-                    <svg className="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" />
-                    </svg>
-                </a>
-                <a className="flex items-center justify-center flex-shrink-0 w-10 h-10 mt-4 rounded hover:bg-gray-300" href="#">
-                    <svg className="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                    </svg>
-                </a>
-                <a className="flex items-center justify-center flex-shrink-0 w-10 h-10 mt-4 rounded hover:bg-gray-300" href="#">
-                    <svg className="w-5 h-5"  xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
-                    </svg>
-                </a>
-                <a className="flex items-center justify-center flex-shrink-0 w-10 h-10 mt-4 mt-auto rounded hover:bg-gray-300" href="#">
-                    <svg className="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                </a>
-            </div>
-            <div className="flex flex-col w-56 border-r border-gray-300">
-                <button className="relative text-sm focus:outline-none group">
-                    <div className="flex items-center justify-between w-full h-16 px-4 border-b border-gray-300 hover:bg-gray-300">
-                        <span className="font-medium">
-                            Dropdown
-                        </span> 
-                        <svg className="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                            <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
-                        </svg>
-                    </div>
-                    <div className="absolute z-10 flex-col items-start hidden w-full pb-1 bg-white shadow-lg group-focus:flex">
-                        <a className="w-full px-4 py-2 text-left hover:bg-gray-300" href="#">Menu Item 1</a>
-                        <a className="w-full px-4 py-2 text-left hover:bg-gray-300" href="#">Menu Item 1</a>
-                        <a className="w-full px-4 py-2 text-left hover:bg-gray-300" href="#">Menu Item 1</a>
-                    </div>
+                <button className="rounded-md hover:bg-red-100 text-red-600 p-2 flex justify-between items-center">
+                    <span></span> DELETE
                 </button>
-                <div className="flex flex-col flex-grow p-4 overflow-auto">
-                    <a className="flex items-center flex-shrink-0 h-10 px-2 text-sm font-medium rounded hover:bg-gray-300" href="#">
-                        <span className="leading-none">Item 1</span>
-                    </a>
-                    <a className="flex items-center flex-shrink-0 h-10 px-2 text-sm font-medium rounded hover:bg-gray-300" href="#">
-                        <span className="leading-none">Item 2</span>
-                    </a>
-                    <a className="flex items-center flex-shrink-0 h-10 px-2 text-sm font-medium rounded hover:bg-gray-300" href="#">
-                        <span className="leading-none">Item 3</span>
-                    </a>
-                    <a className="flex items-center flex-shrink-0 h-10 px-2 text-sm font-medium rounded hover:bg-gray-300" href="#">
-                        <span className="leading-none">Item 4</span>
-                    </a>
-                    <a className="flex items-center flex-shrink-0 h-10 px-2 text-sm font-medium rounded hover:bg-gray-300" href="#">
-                        <span className="leading-none">Item 5</span>
-                    </a>
-                    <a className="flex items-center flex-shrink-0 h-10 px-2 text-sm font-medium rounded hover:bg-gray-300" href="#">
-                        <span className="leading-none">Item 6</span>
-                    </a>
-                    <a className="flex items-center flex-shrink-0 h-10 px-3 mt-auto text-sm font-medium bg-gray-200 rounded hover:bg-gray-300"
-                        href="#">
-                        <svg className="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                        </svg>
-                        <span className="ml-2 leading-none">New Item</span>
-                    </a>
                 </div>
+            </td>
+        </tr>
 
-            </div>
-            <div className="flex flex-col flex-grow">
-                <div className="flex items-center flex-shrink-0 h-16 px-8 border-b border-gray-300">
-                    <h1 className="text-lg font-medium">Welcome back, {nickName}</h1>
-                    <button className="flex items-center justify-center h-10 px-4 ml-auto text-sm font-medium rounded hover:bg-gray-300">
-                        Action 1
-                    </button>
-                    <button className="flex items-center justify-center h-10 px-4 ml-2 text-sm font-medium bg-gray-200 rounded hover:bg-gray-300">
-                        Action 2
-                    </button>
-                    <button className="relative ml-2 text-sm focus:outline-none group">
-                        <div className="flex items-center justify-between w-10 h-10 rounded hover:bg-gray-300">
-                            <svg className="w-5 h-5 mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
-                            </svg>
-                        </div>
-                        <div className="absolute right-0 flex-col items-start hidden w-40 pb-1 bg-white border border-gray-300 shadow-lg group-focus:flex">
-                            <a className="w-full px-4 py-2 text-left hover:bg-gray-300" href="#">Menu Item 1</a>
-                            <a className="w-full px-4 py-2 text-left hover:bg-gray-300" href="#">Menu Item 1</a>
-                            <a className="w-full px-4 py-2 text-left hover:bg-gray-300" href="#">Menu Item 1</a>
-                        </div>
-                    </button>
-                </div>
-                <div className="flex-grow p-6 overflow-auto bg-gray-200">
-                    <div className="grid grid-cols-3 gap-6">
-                        <div className="h-24 col-span-1 bg-white border border-gray-300"></div>
-                        <div className="h-24 col-span-1 bg-white border border-gray-300"></div>
-                        <div className="h-24 col-span-1 bg-white border border-gray-300"></div>
-                        <div className="h-24 col-span-2 bg-white border border-gray-300"></div>
-                        <div className="h-24 col-span-1 bg-white border border-gray-300"></div>
-                        <div className="h-24 col-span-1 bg-white border border-gray-300"></div>
-                        <div className="h-24 col-span-2 bg-white border border-gray-300"></div>
-                        <div className="h-24 col-span-3 bg-white border border-gray-300"></div>
-                        <div className="h-24 col-span-1 bg-white border border-gray-300"></div>
-                        <div className="h-24 col-span-1 bg-white border border-gray-300"></div>
-                        <div className="h-24 col-span-1 bg-white border border-gray-300"></div>
-                        <div className="h-24 col-span-2 bg-white border border-gray-300"></div>
-                        <div className="h-24 col-span-1 bg-white border border-gray-300"></div>
-                        <div className="h-24 col-span-1 bg-white border border-gray-300"></div>
-                        <div className="h-24 col-span-2 bg-white border border-gray-300"></div>
-                        <div className="h-24 col-span-3 bg-white border border-gray-300"></div>
-                        <div className="h-24 col-span-1 bg-white border border-gray-300"></div>
-                        <div className="h-24 col-span-1 bg-white border border-gray-300"></div>
-                        <div className="h-24 col-span-1 bg-white border border-gray-300"></div>
-                        <div className="h-24 col-span-2 bg-white border border-gray-300"></div>
-                        <div className="h-24 col-span-1 bg-white border border-gray-300"></div>
-                        <div className="h-24 col-span-1 bg-white border border-gray-300"></div>
-                        <div className="h-24 col-span-2 bg-white border border-gray-300"></div>
-                        <div className="h-24 col-span-3 bg-white border border-gray-300"></div>
-                    </div>
+          ) )): (
+            <p>No users found</p>
+                 )}
+
+                           
+                        </thead>
+                    </table>
                 </div>
             </div>
+            
+        </div>
+        
+    </div>
 
-</div>
+    
   )
 }
 

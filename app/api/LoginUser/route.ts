@@ -26,7 +26,7 @@ export const POST =  async(req: NextRequest) => {
          }   
          
          const token = jwt.sign({id: getUser.id, email: getUser.email},
-            process.env.SECRET_KEY as string, { expiresIn: 10}
+            process.env.SECRET_KEY as string, { expiresIn: 60*24}
          );
 
          const dataToken = {
