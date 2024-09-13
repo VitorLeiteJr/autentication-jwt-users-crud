@@ -34,8 +34,9 @@ const Login = () => {
   return (
    <CompForm
    onSubmit={handleSubmit}
-   textButton="Login"
-   textDescription="Enter your login and password"   
+   textButton="Sign in"
+   textDescription="Enter your login and password" 
+   isLogin={true}
    />
   )
 }

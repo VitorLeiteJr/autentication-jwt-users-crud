@@ -1,15 +1,17 @@
 
+import Link from "next/link"
 import { FormEvent } from "react"
 
 interface formProps {
 
     onSubmit: (e: FormEvent<HTMLFormElement>) => void,
     textButton: string,
-    textDescription: string,    
+    textDescription: string,
+    isLogin: boolean
 
 }
 
-const CompForm = ({onSubmit, textButton,textDescription}: formProps) => {
+const CompForm = ({onSubmit, textButton,textDescription, isLogin}: formProps) => {
   return (
     <div className="bg-black text-white flex min-h-screen flex-col items-center pt-16 sm:justify-center sm:pt-0">
    
@@ -64,7 +66,9 @@ const CompForm = ({onSubmit, textButton,textDescription}: formProps) => {
                     </div>
                     
                     <div className="mt-4 flex items-center justify-end gap-x-2">
-                       
+                   {isLogin ? ( <Link href={'/register'}
+                            className="font-semibold hover:bg-black hover:text-white hover:ring hover:ring-white transition duration-300 inline-flex items-center justify-center rounded-md text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-white text-black h-10 px-4 py-2"
+                            type="submit">Sign up</Link>) : (<Link href={'/login'}>do you have a account? click here</Link>) }
                         <button
                             className="font-semibold hover:bg-black hover:text-white hover:ring hover:ring-white transition duration-300 inline-flex items-center justify-center rounded-md text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-white text-black h-10 px-4 py-2"
                             type="submit">{textButton}</button>

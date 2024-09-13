@@ -30,7 +30,8 @@ const Register = () => {
    <CompForm
    onSubmit={handleSubmit}
    textButton="Register"
-   textDescription="fill the fields"   
+   textDescription="fill the fields"  
+   isLogin={false}
    />
   )
 }
