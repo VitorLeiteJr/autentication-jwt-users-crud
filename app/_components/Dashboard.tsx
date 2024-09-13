@@ -1,12 +1,20 @@
 
 import { User } from "@prisma/client";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 interface DashboardProsps {  
     users: User[];    
 }
 
 const Dashboard = ({users}: DashboardProsps) => {
+    const route = useRouter();
+
+    const logoutButton = () => {
+
+        localStorage.removeItem("token");
+        route.push("/login")
+        
+    }
     
    return (
     
@@ -16,7 +24,7 @@ const Dashboard = ({users}: DashboardProsps) => {
               <div className="flex items-center space-x-2 text-gray-400">
                  <span className="tracking-wide text-md flex-col flex">
                     <span className="text-base">Welcome back,</span>
-                    <Link className="" href="/">Logout</Link>
+                    <button onClick={logoutButton}>Logout</button>
                 </span>
               </div>
         </div>
