@@ -30,7 +30,7 @@ export const POST =  async(req: NextRequest) => {
          );
 
          const dataToken = {
-            username: getUser.name,
+            name: getUser.name,
             token: token
             };
 

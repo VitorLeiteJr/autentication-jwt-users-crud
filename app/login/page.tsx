@@ -24,6 +24,7 @@ const Login = () => {
         if(response.data.status){
           toast.success("Autentication is ok")
           localStorage.setItem("token", response.data.dataToken.token);
+          localStorage.setItem("name", response.data.dataToken.name);
           route.push("/dashboard");
         }else{
         toast.error("something is wrong");

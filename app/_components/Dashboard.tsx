@@ -8,11 +8,13 @@ interface DashboardProsps {
 
 const Dashboard = ({users}: DashboardProsps) => {
     const route = useRouter();
+    const name = localStorage.getItem("name") as string;
 
     const logoutButton = () => {
 
         localStorage.removeItem("token");
-        route.push("/login")
+        localStorage.removeItem("name");
+        route.push("/login");
         
     }
     
@@ -23,7 +25,7 @@ const Dashboard = ({users}: DashboardProsps) => {
         <div className="header bg-white h-16 px-10 py-8 border-b-2 border-gray-200 flex items-center justify-between">
               <div className="flex items-center space-x-2 text-gray-400">
                  <span className="tracking-wide text-md flex-col flex">
-                    <span className="text-base">Welcome back,</span>
+                    <span className="text-base">Welcome back, {name}</span>
                     <button onClick={logoutButton}>Logout</button>
                 </span>
               </div>
