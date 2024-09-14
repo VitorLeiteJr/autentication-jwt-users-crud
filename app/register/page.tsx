@@ -14,8 +14,9 @@ const Register = () => {
         
         const email = formData.get("email") as string;
         const pw = formData.get("password") as string;
+        const name = formData.get("name") as string;
 
-        const response =await axios.post("/api/RegisterUser", {email,pw});
+        const response =await axios.post("/api/RegisterUser", {email,pw,name});
 
         if(response.data.status){
        toast.success("Create with success!");
@@ -32,6 +33,7 @@ const Register = () => {
    textButton="Register"
    textDescription="fill the fields"  
    isLogin={false}
+   isRegister={true}
    />
   )
 }

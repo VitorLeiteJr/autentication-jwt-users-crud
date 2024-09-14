@@ -37,6 +37,7 @@ const Login = () => {
    textButton="Sign in"
    textDescription="Enter your login and password" 
    isLogin={true}
+   isRegister={false}
    />
   )
 }
