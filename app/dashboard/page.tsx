@@ -12,14 +12,17 @@ const DashboardPage =  () => {
 
     //const nickName= cookies().get("nickname");
       const [users,setUsers] = useState<User[]>([]);
+      const [name, setName] = useState("");
       const route = useRouter();
 
      useEffect(()=>{
       
       const token = localStorage.getItem("token") as string;
+      const name = localStorage.getItem("name") as string;
       
       const validate = async () =>{        
-      const isOk = await axios.post("/api/CheckToken",{token});      
+      const isOk = await axios.post("/api/CheckToken",{token});
+      setName(name);      
       if(!isOk.data.status) {
          toast.error(isOk.data.Error);
          route.push("/login");
@@ -39,6 +42,7 @@ const DashboardPage =  () => {
       
     <Dashboard
     users={users}
+    nameUserSession={name}
     />
   )
 }

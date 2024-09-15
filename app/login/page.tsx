@@ -1,5 +1,5 @@
 'use client'
-import { FormEvent } from "react"
+import { FormEvent, useEffect } from "react"
 import CompForm from "../_components/CompForm"
 import axios from "axios"
 import { useRouter } from "next/navigation"
@@ -9,6 +9,29 @@ const Login = () => {
     
   const route = useRouter();
 
+  useEffect(()=>{
+    checkToken();
+  })
+
+
+  const checkToken = async ()=>{
+    const token = localStorage.getItem("token");
+    const name = localStorage.getItem("name");
+      
+    if(token===null || name===null ) return;
+
+    const response = await axios.post("/api/CheckToken", {token});
+    
+    console.log(response.data.status);
+
+    if(!response.data.status) return;
+
+    route.push('/dashboard');
+
+    //console.log(token);
+
+    }
+
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) =>{
               
         e.preventDefault();
@@ -16,8 +39,6 @@ const Login = () => {
         const formData = new FormData(e.currentTarget);   
         const email = formData.get("email") as string;
         const pw = formData.get("password") as string;
-
-       
 
         const response = await axios.post("/api/LoginUser", {email,pw});
 
