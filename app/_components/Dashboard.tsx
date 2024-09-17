@@ -4,10 +4,11 @@ import { useRouter } from "next/navigation";
 
 interface DashboardProsps {  
     users: User[],
-    nameUserSession: string;     
+    nameUserSession: string,
+    handleDelete: (id: string) => void;    
 }
 
-const Dashboard = ({users, nameUserSession}: DashboardProsps) => {
+const Dashboard = ({users, nameUserSession,handleDelete}: DashboardProsps) => {
     const route = useRouter();
 
     const logoutButton = () => {
@@ -66,7 +67,7 @@ const Dashboard = ({users, nameUserSession}: DashboardProsps) => {
                     <span>
                     </span> EDIT
                 </a>
-                <button className="rounded-md hover:bg-red-100 text-red-600 p-2 flex justify-between items-center">
+                <button onClick={()=>handleDelete(user.id)} className="rounded-md hover:bg-red-100 text-red-600 p-2 flex justify-between items-center">
                     <span></span> DELETE
                 </button>
                 </div>
