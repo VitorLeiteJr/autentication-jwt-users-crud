@@ -4,33 +4,26 @@ import CompForm from "../_components/CompForm"
 import axios from "axios"
 import { useRouter } from "next/navigation"
 import { toast } from "react-toastify"
+import { checkIsLogin } from "@/util/checkIsLogin"
 
 const Login = () => {
     
   const route = useRouter();
 
   useEffect(()=>{
-    checkToken();
+    const token = localStorage.getItem("token") as string;
+        const name = localStorage.getItem("name") as string; 
+        
+        const isLoginAsync = async ()=> {
+        const isLogin = await checkIsLogin(token,name);
+        
+        if(!isLogin) return;
+        route.push('/dashboard');
+        }
+        isLoginAsync();
   })
 
 
-  const checkToken = async ()=>{
-    const token = localStorage.getItem("token");
-    const name = localStorage.getItem("name");
-      
-    if(token===null || name===null ) return;
-
-    const response = await axios.post("/api/CheckToken", {token});
-    
-    console.log(response.data.status);
-
-    if(!response.data.status) return;
-
-    route.push('/dashboard');
-
-    //console.log(token);
-
-    }
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) =>{
               

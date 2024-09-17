@@ -1,13 +1,30 @@
 'use client'
-import { FormEvent } from "react"
+import { FormEvent, useEffect } from "react"
 import CompForm from "../_components/CompForm"
 import axios from "axios"
 import { toast } from "react-toastify"
 import { useRouter } from "next/navigation"
+import { checkIsLogin } from "@/util/checkIsLogin"
 const Register = () => {
 
         const route = useRouter();
+
+        useEffect(()=>{
+
+        const token = localStorage.getItem("token") as string;
+        const name = localStorage.getItem("name") as string; 
+
+        const isLoginAsync = async ()=> {
+        const isLogin = await checkIsLogin(token,name);
         
+        if(!isLogin) return;
+        route.push('/dashboard');
+        }
+        isLoginAsync();
+        })
+        
+        
+
         const handleSubmit = async (e: FormEvent<HTMLFormElement>) =>{
         e.preventDefault();
         const formData = new FormData(e.currentTarget);        
