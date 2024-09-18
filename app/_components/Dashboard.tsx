@@ -1,5 +1,6 @@
 
 import { User } from "@prisma/client";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 interface DashboardProsps {  
@@ -63,10 +64,10 @@ const Dashboard = ({users, nameUserSession,handleDelete}: DashboardProsps) => {
             <td>{user.email}</td>
             <td className="p-2">
                 <div className="flex justify-center">
-                <a href="#" className="rounded-md hover:bg-green-100 text-green-600 p-2 flex justify-between items-center">
+                <Link href={'/edit/'+user.id} className="rounded-md hover:bg-green-100 text-green-600 p-2 flex justify-between items-center">
                     <span>
                     </span> EDIT
-                </a>
+                </Link>
                 <button onClick={()=>handleDelete(user.id)} className="rounded-md hover:bg-red-100 text-red-600 p-2 flex justify-between items-center">
                     <span></span> DELETE
                 </button>

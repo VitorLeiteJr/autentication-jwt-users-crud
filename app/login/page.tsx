@@ -53,6 +53,7 @@ const Login = () => {
    textDescription="Enter your login and password" 
    isLogin={true}
    isRegister={false}
+   isEditUser={false}
    />
   )
 }

@@ -51,6 +51,7 @@ const Register = () => {
    textDescription="fill the fields"  
    isLogin={false}
    isRegister={true}
+   isEditUser={false}
    />
   )
 }

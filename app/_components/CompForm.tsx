@@ -1,6 +1,6 @@
 
 import Link from "next/link"
-import { FormEvent } from "react"
+import { FormEvent, useEffect, useState } from "react"
 
 interface formProps {
 
@@ -8,12 +8,24 @@ interface formProps {
     textButton: string,
     textDescription: string,
     isLogin: boolean,
-    isRegister: boolean
+    isRegister: boolean,
+    isEditUser: boolean,
+    emailValue?: string,
+    nameValue?: string
 
 }
 
-const CompForm = ({onSubmit, textButton,textDescription, isLogin, isRegister}: formProps) => {
-  return (
+const CompForm = ({onSubmit, textButton,textDescription, isLogin, isRegister,isEditUser,emailValue,nameValue}: formProps) => {
+    
+    const [token, setToken] = useState<string | null>(null);
+    
+      
+    useEffect(()=>{
+        const tokenData = localStorage.getItem("token");
+        setToken(tokenData);
+    },[])
+
+    return (
     <div className="bg-black text-white flex min-h-screen flex-col items-center pt-16 sm:justify-center sm:pt-0">
    
     <div className="relative mt-12 w-full max-w-lg sm:mt-10">
@@ -36,13 +48,14 @@ const CompForm = ({onSubmit, textButton,textDescription, isLogin, isRegister}: f
                                     <label
                                         className="text-xs font-medium text-muted-foreground group-focus-within:text-white text-gray-400">Username</label>
                                     </div>
-                                <input type="text" name="email" defaultValue="vitor"
+                                <input type="text" name="email" defaultValue={emailValue}
                                     autoComplete="off"
                                     className="block w-full border-0 bg-transparent p-0 text-sm file:my-1 file:rounded-full file:border-0 file:bg-accent file:px-4 file:py-2 file:font-medium placeholder:text-muted-foreground/90 focus:outline-none focus:ring-0 sm:leading-7 text-foreground" required/>
                             </div>
                         </div>
                     </div>
-                    {isRegister ? (
+                    <input type="hidden" name="token"defaultValue={token!}></input>
+                    {isRegister || isEditUser ? (
                     <div>
                         <div className="mt-4">
                             <div
@@ -51,7 +64,7 @@ const CompForm = ({onSubmit, textButton,textDescription, isLogin, isRegister}: f
                                     <label
                                         className="text-xs font-medium text-muted-foreground group-focus-within:text-white text-gray-400">Name</label>
                                     </div>
-                                <input type="text" name="name" defaultValue="Vitor Leite"
+                                <input type="text" name="name" defaultValue={nameValue}
                                     autoComplete="off"
                                     className="block w-full border-0 bg-transparent p-0 text-sm file:my-1 file:rounded-full file:border-0 file:bg-accent file:px-4 file:py-2 file:font-medium placeholder:text-muted-foreground/90 focus:outline-none focus:ring-0 sm:leading-7 text-foreground" required/>
                             </div>
@@ -59,7 +72,7 @@ const CompForm = ({onSubmit, textButton,textDescription, isLogin, isRegister}: f
                     </div>
                 ): (<></>)}
               
-                    <div className="mt-4">
+                   {!isEditUser ? ( <div className="mt-4">
                         <div>
                             <div
                                 className="group relative rounded-lg border focus-within:border-sky-200 px-3 pb-1.5 pt-2.5 duration-200 focus-within:ring focus-within:ring-sky-300/30">
@@ -73,7 +86,7 @@ const CompForm = ({onSubmit, textButton,textDescription, isLogin, isRegister}: f
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div>) : <></>}
                             
                     <div className="mt-4 flex items-center justify-end gap-x-2">
                    {isLogin ? ( <Link href={'/register'}
