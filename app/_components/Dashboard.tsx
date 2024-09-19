@@ -31,7 +31,8 @@ const Dashboard = ({users, nameUserSession,handleDelete}: DashboardProsps) => {
                 </span>
               </div>
         </div>
-        <div className="header my-3 px-10 flex items-center justify-between">------           
+        <div className="header my-3 px-10 flex items-center justify-between">
+            <Link className="rounded-md hover:bg-green-100 text-green-600 p-2 flex justify-between items-center" href={'/create'}>Create a user</Link>         
         </div>
         <div className="flex">
            

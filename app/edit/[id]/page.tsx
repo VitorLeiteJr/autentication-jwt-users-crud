@@ -56,13 +56,10 @@ const EditUser = ({params: {id}}: editProps) => {
 
         const editUser = await axios.post('/api/EditUser',{token,id,email,name});
 
-        if(!editUser.data.status)toast.error("something is wrong");
-        
+        if(!editUser.data.status)toast.error("something is wrong");        
         
         toast.success("user was edited with success");
-        router.push('/dashboard')
-        
-
+        router.push('/dashboard');
 
     }
 
